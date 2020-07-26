@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'application'
+    //id 'com.google.protobuf' version '0.8.8'
+}
+
+group 'com.omikuji.apis'
+version '1.0-SNAPSHOT'
+
+ext {
+    vertxVersion = '3.8.4'
+}
+
+repositories {
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots'
+        mavenContent {
+        snapshotsOnly()
+        }
+    }
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile 'io.vertx:vertx-web-graphql:3.9.1'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    implementation "io.vertx:vertx-web-graphql:$vertxVersion"
+    implementation "io.vertx:vertx-rx-java2:$vertxVersion"
+    implementation "io.vertx:vertx-web:$vertxVersion"
+    implementation "io.vertx:vertx-pg-client:$vertxVersion"
+
+    testImplementation "io.vertx:vertx-junit5:$vertxVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitJupiterEngineVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterEngineVersion"
+}
+
+test {
+  useJUnitPlatform()
+  testLogging {
+    events 'PASSED', 'FAILED', 'SKIPPED'
+  }
+}

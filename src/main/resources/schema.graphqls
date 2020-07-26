@@ -1,0 +1,16 @@
+type Query {
+  songById(id: ID): Song
+}
+
+type Song {
+  id: ID
+  name: String
+  wordCount: Int
+  songwriter: Songwriter
+}
+
+type Songwriter {
+  id: ID
+  firstName: String
+  lastName: String
+}
